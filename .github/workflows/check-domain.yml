@@ -27,5 +27,18 @@ jobs:
         run: |
           curl --head --silent --show-error --max-time 20 http://sorog.net/
           curl --head --silent --show-error --max-time 20 http://www.sorog.net/
+      - name: Run GitHub's official domain checker
+        run: |
+          gem install --user-install github-pages-health-check --version 1.19.2 --no-document
+          ruby <<'RUBY'
+          require "github-pages-health-check"
+          require "json"
+          ["sorog.net", "www.sorog.net"].each do |host|
+            [:default, :public, :authoritative].each do |nameservers|
+              check = GitHubPages::HealthCheck::Domain.new(host, nameservers: nameservers)
+              puts JSON.generate(host: host, nameservers: nameservers, records: check.dns&.map(&:to_s), valid: check.valid?, served_by_pages: check.served_by_pages?, https_eligible: check.https_eligible?, reason: check.reason&.message)
+            end
+          end
+          RUBY
       - name: Verify HTTPS certificate
         run: curl --head --silent --show-error --max-time 20 https://sorog.net/
