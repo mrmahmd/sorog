@@ -1,0 +1,31 @@
+name: Check custom domain
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dns-and-https:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Resolve domain from GitHub runner
+        run: |
+          date -u
+          dig sorog.net A +noall +answer
+          dig www.sorog.net CNAME +noall +answer
+          dig sorog.net AAAA +noall +answer
+          dig sorog.net CAA +noall +answer
+      - name: Read both authoritative nameservers
+        run: |
+          dig @ns11.domaincontrol.com sorog.net A +noall +answer
+          dig @ns12.domaincontrol.com sorog.net A +noall +answer
+          dig @ns11.domaincontrol.com www.sorog.net CNAME +noall +answer
+          dig @ns12.domaincontrol.com www.sorog.net CNAME +noall +answer
+      - name: Check HTTP and www redirect
+        run: |
+          curl --head --silent --show-error --max-time 20 http://sorog.net/
+          curl --head --silent --show-error --max-time 20 http://www.sorog.net/
+      - name: Verify HTTPS certificate
+        run: curl --head --silent --show-error --max-time 20 https://sorog.net/
