@@ -5,7 +5,7 @@
 html{min-width:280px;min-height:100%;background:#fafbf9}
 body{margin:0;min-height:100svh;position:relative;display:flex;flex-direction:column;isolation:isolate;overflow-x:hidden;font-family:'Tajawal',Tahoma,Arial,sans-serif;color:var(--ink);background:radial-gradient(ellipse at 50% 42%,#fff 0%,#fff 28%,#fafbf9 76%)}
 .color-line{position:absolute;inset:0 0 auto;height:4px;background:linear-gradient(90deg,var(--blue) 0%,#2d9aee 36%,var(--green) 59%,var(--gold) 85%,#ffb932 100%)}
-.ambient{position:absolute;z-index:-1;pointer-events:none;width:380px;height:380px;border-radius:50%;filter:blur(85px);opacity:.065}
+.ambient{position:fixed;z-index:-1;pointer-events:none;width:380px;height:380px;border-radius:50%;filter:blur(85px);opacity:.065}
 .ambient-blue{left:-230px;top:20%;background:var(--blue)}
 .ambient-gold{right:-240px;bottom:14%;background:var(--gold)}
 .masthead,footer{width:min(1240px,calc(100% - 112px));margin-inline:auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
@@ -34,4 +34,5 @@ footer{border-top:1px solid #e7ebee;padding:22px 0 24px;color:#75808d;font-size:
 .footer-message span{color:var(--gold);font-size:17px}
 @media(min-height:900px){main{padding-block:52px}.logo-wrap{margin-bottom:36px}.logo{width:190px;height:277px}}
 @media(max-width:600px){.masthead,footer{width:calc(100% - 40px)}.masthead{padding-top:23px;min-height:62px;font-size:13px}.domain{font-size:12px}.domain-arrow{font-size:16px;margin-left:6px}main{padding:30px 20px 34px}.logo{width:145px;height:212px}.logo-wrap{margin-bottom:23px}.announcement{font-size:12px;padding:8px 13px 6px}h1{font-size:78px;margin-top:20px}h2{font-size:20px;margin-bottom:12px}.description{font-size:14px;line-height:1.9}.signature{margin:24px 0 17px}.english{font-size:8px;letter-spacing:1.4px}footer{padding-block:18px;font-size:10px;gap:12px}.footer-message{gap:5px}}
-@media(max-height:720px) and (min-width:601px){main{padding:18px 24px 25px}.logo{width:130px;height:190px}.logo-wrap{margin-bottom:16px}h1{font-size:78px;margin-top:16px}.signature{margin:18px 0 14px}}
+@media(max-height:850px) and (min-width:601px){.masthead{padding-top:24px;min-height:60px}main{padding:16px 24px}.logo{width:122px;height:178px}.logo-wrap{margin-bottom:15px}h1{font-size:80px;margin-top:16px}h2{font-size:25px}.description{font-size:15px;line-height:1.85}.signature{margin:14px 0 10px}footer{padding-block:16px}}
+@media(max-height:700px) and (min-width:601px){.logo{width:106px;height:155px}h1{font-size:68px}.logo-wrap{margin-bottom:12px}main{padding-block:12px}}
